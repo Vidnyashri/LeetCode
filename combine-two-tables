@@ -1,0 +1,1 @@
+select p.firstName,p.lastName,ifnull(a.city,NULL)as city,ifnull(a.state,null) as state from Person p left join Address a on p.personId=a.personId;
