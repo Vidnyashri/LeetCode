@@ -1,0 +1,1 @@
+select customer_id from Customer c1 inner join Product p1 on c1.product_key=p1.product_key group by customer_id having count(distinct p1.product_key)=(select count(*) from Product);
