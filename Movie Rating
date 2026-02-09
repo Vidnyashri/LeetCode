@@ -1,0 +1,5 @@
+
+select name as results from (select u.name,mr.user_id,count(mr.user_id) from Users u  inner join MovieRating mr on u.user_id=mr.user_id group by mr.user_id order by count(mr.user_id) desc,u.name limit 1)f
+
+union all
+select title as results from(select m.title,mr.movie_id,sum(mr.rating)/count(mr.movie_id) as finalrating from Movies m inner join MovieRating mr on m.movie_id=mr.movie_id where mr.created_at between '2020-02-01' and '2020-02-29' group by m.movie_id order by finalrating desc,m.title limit 1)s;
