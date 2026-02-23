@@ -1,0 +1,9 @@
+with mid as(
+select *, lag(num,1)over(order by Id) prev1,
+lead(num,1)over(order by Id) next1
+from logs
+order by Id
+)
+select distinct num as ConsecutiveNums
+from mid
+where num=prev1 and num=next1;
