@@ -1,0 +1,1 @@
+select d.name as Department,e.name as Employee,e.salary as Salary from (select e.*,dense_rank()over (partition by e.departmentId order by  salary desc) as rnk from Employee e) as e inner join Department d on e.departmentId=d.id where e.rnk=1 order by e.salary desc ;
